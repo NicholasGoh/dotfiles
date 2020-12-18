@@ -1,3 +1,4 @@
+stty stop undef
 export TERM=xterm-256color
 env TERM=screen-256color tmux
 tmux source-file ~/.tmux.conf
@@ -115,32 +116,13 @@ bindkey -v
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias vv="vim ~/.vimrc"
-alias zz="vim ~/.zshrc"
-alias tm="vim ~/.tmux.conf"
-alias sz="source ~/.zshrc"
-alias rr="ranger"
-alias jn="jupyter notebook"
-alias tt="tldr"
-alias oo="xdg-open"
-alias nn="nautilus ."
-alias dd="cd ~/data"
-alias rp="cd ~/repos"
-alias dl="cd ~/downloads"
-alias ssl="cd ~/code/ssl"
-alias dn="cd ~/repos/darknet"
-alias rpg="cd ~/repos/git"
-
 alias l='exa'
 alias la='exa -a'
 alias ll='exa -l'
 alias lt='exa -s mod -r'
 alias grep='grep -n --color'
 alias mkdir='mkdir -pv'
-alias scan="clamscan"
 alias cp="cp -r"
-alias mods="cd ~/stuff/mods"
-alias starwars="telnet towel.blinkenlights.nl"
 # xinput float 22
 # xinput reattach 22 3
 # alias zshconfig="mate ~/.zshrc"
@@ -163,3 +145,5 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH="/home/nic/repos/system/swift-5.3.1-RELEASE-ubuntu20.04/usr/bin:$PATH"
