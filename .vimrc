@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'"{{{
 Plug 'itchyny/lightline.vim'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'frazrepo/vim-rainbow'
@@ -32,21 +32,21 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'airblade/vim-gitgutter'
+"Plug 'Valloric/YouCompleteMe'
 "Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'}}}
 call plug#end()
-"let g:javadoc_path='/home/nic/stuff/2002/project/files/project2/new'
-"let g:javadoc_browser = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+
 " Plug 'preservim/nerdcommenter'
 let mapleader = " "
 
 " Plug 'liuchengxu/vim-which-key'
-call which_key#register('<Space>', 'g:which_key_map')
+call which_key#register('<Space>', 'g:which_key_map')"{{{
 nnoremap <silent> <localleader> :WhichKey '\'<cr>
 vnoremap <silent> <localleader> :WhichKeyVisual '\'<cr>
 nnoremap <silent> <leader> :WhichKey '<Space>'<cr>
 vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<cr>
-let g:which_key_map = {}
 let g:which_key_map = {
 	  \ 'name' : 'space bindings',
 	  \
@@ -170,13 +170,13 @@ let g:which_key_map = {
 		  \ 'name' : 'which_key_ignore',
 	  \},
 \}
-set timeoutlen=250
+set timeoutlen=250"}}}
 
 " Plug 'morhetz/gruvbox'
 " Plug 'mhartington/oceanic-next'
 " Plug 'whatyouhide/vim-gotham'
 " Plug 'junegunn/seoul256.vim'
- let g:gruvbox_italic = 1
+ let g:gruvbox_italic = 1"{{{
 colorscheme gruvbox
 "colorscheme gotham256
 "colorscheme OceanicNext
@@ -191,36 +191,37 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
-"function! StatusDiagnostic() abort
-  "let info = get(b:, 'coc_diagnostic_info', {})
-  "if empty(info) | return '' | endif
-  "let msgs = []
-  "if get(info, 'error', 0)
-	"call add(msgs, 'E' . info['error'])
-  "endif
-  "if get(info, 'warning', 0)
-	"call add(msgs, 'W' . info['warning'])
-  "endif
-  "return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
-"endfunction
 "let g:lightline = {
-	"\ 'component': {
-	"\   'lineinfo': "%{line('.') . '/' . line('$')}",
-	"\	 'statusline': "{StatusDiagnostic()}"
-	"\ },
-	"\ }
-
+      "\ 'colorscheme': 'gruvbox',
+      "\ 'active': {
+      "\   'left': [ [ 'mode', 'paste' ],
+      "\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      "\ },
+      "\ 'component_function': {
+      "\   'cocstatus': 'coc#status',
+      "\   'currentfunction': 'CocCurrentFunction'
+      "\ },
+      "\ }
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+let g:lightline = {
+    \ 'colorscheme': 'gruvbox',
+    \ 'component': {
+    \   'lineinfo': "%{line('.') . '/' . line('$')}",
+    \	 'statusline': "{StatusDiagnostic()}"
+    \ },
+    \ }
+"}}}
 
 " Plug 'frazrepo/vim-rainbow'
 let g:rainbow_active = 1 " enable raibow brackets across all filetypes
@@ -231,7 +232,6 @@ let g:TerminusMouse=0
 nnoremap <leader>mmm :set mouse-=a<cr>
 nnoremap <leader>mm :set mouse=a<cr>
 
-
 " functionalities
 " Plug 'lervag/vimtex'
 let g:vimtex_view_general_viewer = 'sumatraPDF'
@@ -239,11 +239,10 @@ let g:vimtex_view_general_options = '-reuse-instance @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 let g:tex_flavor= 'latex'
 
-
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Remap keys for gotos
-"nmap gi <Plug>(coc-implementation)
-"nmap gr <Plug>(coc-references)
+" Remap keys for gotos{{{
+nmap gi <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
 nmap gi "yyiw:Rg <c-r>y<cr>
 nmap gr "yyiw:Rg <c-r>y<cr>
 
@@ -279,10 +278,10 @@ inoremap <expr> <ENTER> pumvisible() ? "\<c-y>" : "\<C-g>u\<cr>"
 " toggle betweeen placeholders
 let g:coc_snippet_next = "<Tab>"
 let g:coc_snippet_prev = "<S-Tab>"
-
+"}}}
 
 " Plug 'preservim/nerdtree'
-let g:NERDCreateDefaultMappings = 0
+let g:NERDCreateDefaultMappings = 0"{{{
 nmap <leader>c<leader> <Plug>NERDCommenterToggle
 vmap <leader>c<leader> <Plug>NERDCommenterToggle
 
@@ -305,15 +304,13 @@ nnoremap <silent> <leader><leader>v :vert term<cr>
 nnoremap <silent> <leader><leader>s :term<cr>
 
 " Nerd tree toggle
-map <c-n> :NERDTreeToggle<cr>
-
-
+map <c-n> :NERDTreeToggle<cr>"}}}
 
 " Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-repeat'
 " deal with ('"<[{
 " auto wrap word
-nmap <leader>" ysiw"
+nmap <leader>" ysiw"{{{
 nmap <leader>' ysiw'
 nmap <leader>] ysiw]
 nmap <leader>) ysiw)
@@ -322,10 +319,11 @@ nmap <leader>s" yss"
 nmap <leader>s' yss'
 nmap <leader>s] yss]
 nmap <leader>s) yss)
-nmap <leader>s> yss>
+nmap <leader>s> yss>"}}}
 
 
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"{{{
 nnoremap <silent> <leader><cr> :FZF<cr>
 nnoremap <silent> <leader><backspace> :FZF ..<cr>
 nnoremap <silent> <leader>\ :FZF ~<cr>
@@ -339,6 +337,7 @@ function! s:build_quickfix_list(lines)
   copen
   cc
 endfunction
+"}}}
 
 " Plug 'majutsushi/tagbar'
 nnoremap <leader>gd g<c-]>
@@ -351,6 +350,7 @@ nnoremap <leader>gg :Rg ""<left>
 
 " Plug 'dense-analysis/ale'
 nnoremap <leader>a :ALEToggle<cr>
+let b:ale_fixers = []
 
 " Plug 'yegappan/mru' 
 let MRU_Open_File_Use_Tabs = 1
@@ -386,14 +386,14 @@ nnoremap <leader>nm ]`
 
 
 " Plug 'rhysd/clever-f.vim'
-let g:clever_f_across_no_line=1
+let g:clever_f_across_no_line=1"{{{
 let g:clever_f_smart_case=1
 "let g:clever_f_chars_match_any_signs=";:"
 let g:clever_f_timeout_ms=250
 map <leader>p <nop>
 map <leader>P <nop>
 map ; <Plug>(clever-f-repeat-forward)
-map , <Plug>(clever-f-repeat-back)
+map , <Plug>(clever-f-repeat-back)"}}}
 
 
 " Plug 'svermeulen/vim-easyclip'
@@ -404,6 +404,12 @@ let g:mkdp_auto_start = 1
 let g:mkdp_browser = '/usr/bin/google-chrome'
 let g:mkdp_filetypes = ['markdown']
 
+"Plug 'airblade/vim-gitgutter'
+let g:gitgutter_map_keys = 0
+nnoremap <leader>tg <nop>
+nnoremap <leader>tg :GitGutterToggle<cr>
+set updatetime=100
+
 "Plug 'honza/vim-snippets'
 "Plug 'SirVer/ultisnips'
 "let g:UltiSnipsExpandTrigger="<Right>"
@@ -411,20 +417,19 @@ let g:mkdp_filetypes = ['markdown']
 "let g:UltiSnipsJumpBackwardTrigger="<left>"
 " call plug#end()
 
-
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
-" Plugin 'ycm-core/YouCompleteMe'
-" let g:loaded_youcompleteme = 1 "disable ycm
-" let g:ycm_confirm_extra_conf = 0
-" let g:ycm_auto_trigger=0
-" call vundle#end()
-
+let g:ycm_global_ycm_extra_conf = "/home/nic/.vim/bundle/YouCompleteMe/python/ycm/tests/testdata/.ycm_extra_conf.py"
+let g:ycm_filetype_whitelist = {
+			\ "c":1,
+			\ "cpp":1,
+			\ "objc":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "zimbu":1,
+			\ "python":1,
+			\ }
 
 " utilities
-nnoremap <leader>dp :vs /home/nic/.vim/ftplugin/python_mappings.vim<cr>
+nnoremap <leader>dp :vs /home/nic/.vim/ftplugin/python_mappings.vim<cr>"{{{
 nnoremap <leader>dj :vs /home/nic/.vim/ftplugin/java_mappings.vim<cr>
 " remove trailing whitespace and ^M chars
 nnoremap <leader>ws :let _s=@/ <bar> :%s/\s\+$//e <bar> :let @/=_s <bar> :nohl <bar> :unlet _s <cr>:!dos2unix %<cr>  
@@ -459,8 +464,6 @@ noremap <silent> <leader>0 :tablast<cr>
 
 " prevent having to type visual to exit
 nnoremap Q <nop>
-
-" enable disble ale for java python
 
 " mapping to stay inside "" {} '' [] ||
 inoremap "" ""<left>
@@ -503,7 +506,7 @@ nnoremap <leader>pc :w<cr>:so %<cr>:PlugClean<cr>
 nmap <silent> <leader><tab> :SetColors all<cr>\|<s-f8>
 "nmap <leader><tab> :SetColors all<cr>:tabnew %<cr>\|<f8>:q<cr>
 set so=999
-nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>"}}}
 
 " WSL yank support
 "let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
@@ -533,23 +536,9 @@ let g:secure_modelines_allowed_items = [
                 \ "rightleft",   "rl",   "norightleft", "norl"
                 \ ]
 syntax on
-"set foldmethod=manual
-"function! Num2S(num, len)
-    "let filler = "                                                            "
-    "let text = '' . a:num
-    "return strpart(filler, 1, a:len - strlen(text)) . text
-"endfunction
-
-"function! FoldText()
-    "let sub = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=', '', 'g')
-    "let diff = v:foldend - v:foldstart + 1
-    "return  '+' . v:folddashes . '[' . Num2S(diff,3) . ']' . sub
-"endfunction
-
-"set foldtext=FoldText()
 
 set nocompatible
-set synmaxcol=100
+"set synmaxcol=100
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4 autoindent
 set tabpagemax=30
 set cursorcolumn
@@ -567,8 +556,26 @@ set rnu
 set hlsearch
 set laststatus=2
 set splitbelow splitright
+set encoding=utf-8
 
 set nobackup
 set nowritebackup
 
 set clipboard^=unnamed,unnamedplus
+
+" get custom fold settings from last line
+set modeline
+set modelines=1  " check last line for custome fold method" Persistent folds between sessions
+
+set foldenable
+set foldlevelstart=5  " open most folds by default
+set foldnestmax=10     " 10 nested fold max
+  
+set foldmethod=indent  " fold based on indent level
+augroup remember_folds
+    autocmd!
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* loadview
+augroup END
+" Set default fold for this file
+" vim: foldmethod=marker:foldlevel=0
